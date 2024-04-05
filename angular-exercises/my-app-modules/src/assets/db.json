@@ -165,7 +165,7 @@
     {
       "username": "admin",
       "password": "admin",
-      "role": "1"
+      "role": "Reader"
     },
     {
       "username": "Lorem",

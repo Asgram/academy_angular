@@ -41,7 +41,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
     this.forbiddenCountries = ['russia', 'cina', 'francia'];
 
     this.route.data.pipe(take(1)).subscribe((data) => {
-      const student: Student = data['editStudent'];
+      const student: Student = data['editStudent']; // Chiave usata nel ResolveData in users-routing.module.ts
       if (student)
         this.student = student;
     });

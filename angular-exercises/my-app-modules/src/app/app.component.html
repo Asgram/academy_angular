@@ -1,15 +1,43 @@
-<app-top-bar></app-top-bar>
+<app-top-bar>
+    <span style="color: white; margin: 0 1rem;">
+        Ciao
+    </span>
+    <span style="color: white; margin: 0 1rem;" domanda>
+        Come
+    </span>
+</app-top-bar>
 
 <div class="container">
   <router-outlet></router-outlet>
 </div>
 
 <!-- 
-Esercizio:
+Esercizio 1:
 1. Creare form di login (campi: nome utente, password)
 2. Salvare nel db.json delle credenziali (utente, password)
 3. Al login (metodo login nel componentente login.component.ts)
     - Controllo credenziali tramite chiamata a BE passando username e password come query params (HTTPParams)
 4. Se login riuscito, salvataggio di utente loggato nell'app (servizio, localStorage, ...)
 5. Se login fallito, messaggio di errore nella pagina login.component.html
+
+Esercizio 2:
+Aggiungere Resolver per ricavare oggetto di dettaglio
+
+Esercizio 3:
+1. Aggiungere una proprietà "role" alle credenziali salvate a DB
+    - Role 1: Reader  > 
+        . Visualizzare lista di User / Credenziali                  > Creare vista con lista
+    - Role 2: Editor  > 
+        . Visualizzare lista di User / Credenziali
+        . Modificare username di Reader e Editor                    > Creare form per modifica
+        . Modificare ruolo di Reader e Editor in Reader e Editor    > Creare form per modifica (^)
+    - Role 3: Admin   >
+        . Visualizzare lista di User / Credenziali
+        . Modificare username di Reader, Editor e Admin
+        . Modificare ruolo di Reader, Editor, Admin in Reader, Editor, Admin
+2. Gestire guardie per componenti figli legate ai "role" nel admin-routing.module
+3. Sezione di sign in per creazione di nuove credenziali da salvare a DB
+        - Form: username e password
+        - Errore se username già utilizzato
+        - Default ruolo Editor
 -->

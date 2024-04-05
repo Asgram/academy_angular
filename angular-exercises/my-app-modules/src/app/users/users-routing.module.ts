@@ -15,12 +15,16 @@ const routesUsers: Routes = [
       { path: 'professors', component: ProfessorsListComponent },
     ]
   },
-  // { path: ':id', component: UserDetailsComponent},
+  // { path: ':id', component: UserDetailsComponent, resolve: { studentId: userDetailNonNullableResolve } },
   { 
     path: 'form', 
     component: UserFormComponent, 
-    resolve: { editStudent: userDetailResolver } 
+    resolve: { editStudent: userDetailResolver }
   },
+  // Percorso invoca resolve
+  // ResolveData { chiave: ResolveFunction<tipoRitorno> }
+  // Se ritorno della ResolveFunction !== tipoRitorno => non eseguo navigazione
+  // Se ritorno della ResolveFunction === tipoRitorno => eseguo navigazione
   { path: '', redirectTo: 'list', pathMatch: 'full' }
 ];
 
