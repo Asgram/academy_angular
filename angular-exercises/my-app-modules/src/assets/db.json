@@ -157,6 +157,7 @@
     }
   ],
   "adminUsers": [
+    { "username": "admin", "password": "admin" },
     { "username": "Lorem", "password": "password" },
     { "username": "Ipsum", "password": "qwerty" }
   ]

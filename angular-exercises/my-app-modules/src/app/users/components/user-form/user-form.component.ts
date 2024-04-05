@@ -59,13 +59,13 @@ export class UserFormComponent implements OnInit, OnDestroy {
 
   buildForm(): void {
     this.name = new FormControl(null, [Validators.required, noWhiteSpaceValidator]);
-    this.surname = new FormControl(null, [Validators.required]);
+    this.surname = new FormControl(null, [Validators.required, noWhiteSpaceValidator]);
     this.age = new FormControl(null, [Validators.required, Validators.min(13)]);
 
-    this.city = new FormControl(null);
-    this.country = new FormControl(null, [Validators.required, noAllowedCountriesValidator(this.forbiddenCountries)]);
+    this.city = new FormControl(null, [noWhiteSpaceValidator]);
+    this.country = new FormControl(null, [Validators.required, noAllowedCountriesValidator(this.forbiddenCountries), noWhiteSpaceValidator]);
 
-    this.hobbies = new FormArray([new FormControl(null)]);
+    this.hobbies = new FormArray([new FormControl(null, [noWhiteSpaceValidator])]);
 
     this.languages = new FormArray([this.createLanguagesFormGroup()]);
 
@@ -89,18 +89,17 @@ export class UserFormComponent implements OnInit, OnDestroy {
   }
 
   addHobby(hobby?: string): void {
-    this.hobbies.push(this.fb.control(hobby ? hobby : null));
+    this.hobbies.push(this.fb.control(hobby ? hobby : null, [noWhiteSpaceValidator]));
   }
 
   deleteHobby(i: number): void {
-    console.log(this.hobbies);
     this.hobbies.controls.splice(i, 1);
   }
 
   createLanguagesFormGroup(lang?: LanguageExpertise): FormGroup {
     return this.fb.group({
-      language: this.fb.control(lang?.language ? lang.language : null),
-      level: this.fb.control(lang?.level ? lang.level : null)
+      language: this.fb.control(lang?.language ? lang.language : null, [noWhiteSpaceValidator]),
+      level: this.fb.control(lang?.level ? lang.level : null, [noWhiteSpaceValidator])
     });
   }
 
@@ -182,14 +181,14 @@ export class UserFormComponent implements OnInit, OnDestroy {
       }
     }
 
-    // if (this.languages.controls.length > this.student.languages.length) {
-    //   // for (let i = LengthValuesArray; i < LengthFormArray; i++) {
+    // if (this.hobbies.controls.length > this.student.hobbies.length) {
+    //   // for (let i = this.student.hobbies.length; i < this.hobbies.controls.length; i++) {
     //   //   this.deleteHobby(i);
     //   // }
-    //   this.languages.controls.splice(this.student.languages.length, this.languages.controls.length - this.student.languages.length);
-    // } else if (this.languages.controls.length < this.student.languages.length) {
-    //   for (let i = 0; i < this.student.languages.length - this.languages.controls.length; i++) {
-    //     this.addLanguage();
+    //   this.hobbies.controls.splice(this.student.hobbies.length, this.hobbies.controls.length - this.student.hobbies.length);
+    // } else if (this.hobbies.controls.length < this.student.hobbies.length) {
+    //   for (let i = 0; i < this.student.hobbies.length - this.hobbies.controls.length; i++) {
+    //     this.addHobby();
     //   }
     // }
   }

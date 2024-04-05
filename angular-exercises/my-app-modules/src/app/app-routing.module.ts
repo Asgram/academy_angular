@@ -27,9 +27,7 @@ const routes: Routes = [
     title: 'Admin',
     canActivate: [authGuard]
   },
-  // Caricamento di un modulo (tramite redirect) con guardia
-  // Percorso che porta a pagina di login (standalone)
-  { path: '**', component: PageNotFoundComponent}
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

@@ -17,7 +17,7 @@ export class LoginComponent {
     private router: Router
   ) {}
 
-  login() {
+  login(): void {
     // this.authService.isLoggedIn = true;
 
     this.authService.login().pipe(take(1)).subscribe(() => {
