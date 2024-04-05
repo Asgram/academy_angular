@@ -157,8 +157,8 @@
     }
   ],
   "adminUsers": [
-    { "username": "admin", "password": "admin" },
-    { "username": "Lorem", "password": "password" },
-    { "username": "Ipsum", "password": "qwerty" }
+    { "username": "admin", "password": "admin", "role": "1" },
+    { "username": "Lorem", "password": "password", "role": "2" },
+    { "username": "Ipsum", "password": "qwerty", "role": "3" }
   ]
 }
