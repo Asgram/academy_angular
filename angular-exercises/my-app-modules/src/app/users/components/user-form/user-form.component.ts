@@ -4,7 +4,7 @@ import { UsersService } from '../../services/users.service';
 import { LanguageExpertise, LanguageLevel, Student } from '../../models/student';
 import { take } from 'rxjs';
 import { noAllowedCountriesValidator, noWhiteSpaceValidator } from '../../../core/functions/validators';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LanguageLevels } from '../../constants/levels';
 
 @Component({
@@ -13,7 +13,7 @@ import { LanguageLevels } from '../../constants/levels';
   styleUrl: './user-form.component.scss'
 })
 export class UserFormComponent implements OnInit, OnDestroy {
-  showForm: boolean = false;
+  showForm: boolean = true;
   langLevels!: Array<LanguageLevel>;
   forbiddenCountries!: Array<string>;
 
@@ -33,26 +33,35 @@ export class UserFormComponent implements OnInit, OnDestroy {
   constructor(
     private fb:FormBuilder,
     private usersService: UsersService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.forbiddenCountries = ['russia', 'cina', 'francia'];
 
+    this.route.data.pipe(take(1)).subscribe((data) => {
+      const student: Student = data['editStudent'];
+      if (student)
+        this.student = student;
+    });
+
     // Ricavare dati da passaggio di rotta (vedi user-list.component.ts)
     // this.student = new Student(history.state.data);
-    this.studentId = localStorage.getItem('studentId');
-    if (this.studentId) {
-      this.usersService.getStudentById(this.studentId).pipe(take(1))
-        .subscribe((student) => {
-          this.student = new Student(student);
-          this.buildForm();
-          this.showForm = true;
-        })
-    } else {
+
+    // Spostata nel resolve user-detail-resolver
+    // this.studentId = localStorage.getItem('studentId');
+    // if (this.studentId) {
+      // this.usersService.getStudentById(this.studentId).pipe(take(1))
+      //   .subscribe((student) => {
+      //     this.student = new Student(student);
+      //     this.buildForm();
+      //     this.showForm = true;
+      //   })
+    // } else {
       this.buildForm();
-      this.showForm = true;
-    }
+      // this.showForm = true;
+    // }
 
     this.langLevels = LanguageLevels;
   }
@@ -210,8 +219,8 @@ export class UserFormComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     let newStudent = new Student(this.userForm.value);
 
-    if (this.studentId) {
-      this.usersService.updateStudent(this.studentId, newStudent).pipe(take(1)).subscribe(res => console.log("Studente aggiornato", res));
+    if (this.student) {
+      this.usersService.updateStudent(this.student.id, newStudent).pipe(take(1)).subscribe(res => console.log("Studente aggiornato", res));
     } else {
       this.usersService.addStudent(newStudent).pipe(take(1)).subscribe(res => console.log("Studente aggiunto", res));
     }

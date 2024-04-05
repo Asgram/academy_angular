@@ -69,7 +69,7 @@ export class UserListComponent implements OnInit, OnDestroy{
 
   goToEditStudent(student: Student): void {
     localStorage.setItem('studentId', student.id);
-    this.router.navigate(['/users/form']);
+    this.router.navigate(['/users/form'], { queryParams: { editStudentId: student.id }});
     
     // this.usersService.idStudentToEdit = student.id;
     

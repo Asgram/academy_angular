@@ -10,6 +10,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { LessonsListComponent } from './components/lessons-list/lessons-list.component';
 import { ProfessorsListComponent } from './components/professors-list/professors-list.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ProfessorsListComponent } from './components/professors-list/professors
     UserListComponent,
     UserFormComponent,
     LessonsListComponent,
-    ProfessorsListComponent
+    ProfessorsListComponent,
+    UserDetailsComponent
   ],
   imports: [
     CommonModule,

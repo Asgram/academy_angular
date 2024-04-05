@@ -13,6 +13,8 @@ export class UsersService {
 
   lastUsedId!: number;
 
+  studentToEdit!: Student;
+
   // idStudentToEdit: string | undefined;
 
   constructor(private http: HttpClient) { }

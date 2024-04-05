@@ -5,6 +5,8 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { LessonsListComponent } from './components/lessons-list/lessons-list.component';
 import { ProfessorsListComponent } from './components/professors-list/professors-list.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { userDetailResolver } from './resolvers/user-detail.resolver';
 
 const routesUsers: Routes = [
   { path: 'list', component: UserListComponent, 
@@ -13,7 +15,12 @@ const routesUsers: Routes = [
       { path: 'professors', component: ProfessorsListComponent },
     ]
   },
-  { path: 'form', component: UserFormComponent },
+  // { path: ':id', component: UserDetailsComponent},
+  { 
+    path: 'form', 
+    component: UserFormComponent, 
+    resolve: { editStudent: userDetailResolver } 
+  },
   { path: '', redirectTo: 'list', pathMatch: 'full' }
 ];
 
