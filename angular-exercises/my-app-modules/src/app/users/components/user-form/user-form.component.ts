@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
-import { LanguageExpertise, LanguageLevel, Locations, Student } from '../../models/student';
+import { LanguageExpertise, LanguageLevel, Student } from '../../models/student';
 import { take } from 'rxjs';
-import { noWhiteSpaceValidator } from '../../../core/functions/validators';
+import { noAllowedCountriesValidator, noWhiteSpaceValidator } from '../../../core/functions/validators';
 import { Router } from '@angular/router';
 import { LanguageLevels } from '../../constants/levels';
 
@@ -15,6 +15,7 @@ import { LanguageLevels } from '../../constants/levels';
 export class UserFormComponent implements OnInit, OnDestroy {
   showForm: boolean = false;
   langLevels!: Array<LanguageLevel>;
+  forbiddenCountries!: Array<string>;
 
   studentId!: string | null;
   student!: Student;
@@ -36,6 +37,8 @@ export class UserFormComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.forbiddenCountries = ['russia', 'cina', 'francia'];
+
     // Ricavare dati da passaggio di rotta (vedi user-list.component.ts)
     // this.student = new Student(history.state.data);
     this.studentId = localStorage.getItem('studentId');
@@ -60,7 +63,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
     this.age = new FormControl(null, [Validators.required, Validators.min(13)]);
 
     this.city = new FormControl(null);
-    this.country = new FormControl(null, [Validators.required]);
+    this.country = new FormControl(null, [Validators.required, noAllowedCountriesValidator(this.forbiddenCountries)]);
 
     this.hobbies = new FormArray([new FormControl(null)]);
 
