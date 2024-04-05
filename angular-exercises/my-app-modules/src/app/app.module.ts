@@ -7,11 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './core/components/top-bar/top-bar.component';
+import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
+import { HomepageComponent } from './core/components/homepage/homepage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopBarComponent
+    TopBarComponent,
+    PageNotFoundComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,

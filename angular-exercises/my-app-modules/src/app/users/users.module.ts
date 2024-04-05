@@ -8,14 +8,16 @@ import { UsersService } from './services/users.service';
 
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
-import { AdminComponent } from './components/admin/admin.component';
+import { LessonsListComponent } from './components/lessons-list/lessons-list.component';
+import { ProfessorsListComponent } from './components/professors-list/professors-list.component';
 
 
 @NgModule({
   declarations: [
     UserListComponent,
-    AdminComponent,
-    UserFormComponent
+    UserFormComponent,
+    LessonsListComponent,
+    ProfessorsListComponent
   ],
   imports: [
     CommonModule,

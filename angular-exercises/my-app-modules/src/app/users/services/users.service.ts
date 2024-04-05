@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UsersModule } from '../users.module';
 import { Student } from '../models/student';
-import { BehaviorSubject, Observable, map, of } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
