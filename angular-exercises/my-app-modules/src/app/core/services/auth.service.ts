@@ -43,15 +43,36 @@ export class AuthService {
     this.userLogged = null;
   }
 
-  checkCredentials(cred: Credentials): Observable<Credentials> {
+  checkCredentials(cred: Credentials, isLogin: boolean = true): Observable<Credentials> {
     const options = { 
-      params: new HttpParams()
-        .set('username', cred.username)
-        .set('password', cred.password)
+      params: new HttpParams().set('username', cred.username)
     };
-    return this.http.get<Array<Credentials>>(`${this.apiUrl}/adminUsers`, options).pipe(
+
+    if (isLogin)
+      options.params.set('password', cred.password)
+
+    return this.http.get<Array<Credentials>>(`${this.apiUrl}/registeredUsers`, options).pipe(
       // Ritorno solamente il primo (ed unico) elemento dell'array, perché l'attuale API restituisce sempre una lista
       map((res) => res[0])
     )
+  }
+
+  signin(cred: Credentials): Observable<boolean> {
+    return this.checkCredentials(cred, false).pipe(
+      map((res => {
+        if (res) {
+          return false
+        } else {
+          return true
+        }
+      }))
+    )
+  }
+
+  registerUser(cred: Credentials): Observable<Credentials> {
+    return this.http.post<Credentials>(`${this.apiUrl}/registeredUsers`, cred)
+      .pipe(map((user) => {
+        return user
+      }));
   }
 }

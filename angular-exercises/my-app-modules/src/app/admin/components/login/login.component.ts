@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit {
+  isLoginAttempt: boolean = true;
+
   loginForm!: FormGroup;
   username!: FormControl;
   password!: FormControl;
@@ -35,15 +37,33 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
-    // this.authService.isLoggedIn = true;
+  login(isLogin: boolean = true): void {
+    
+    if (isLogin) {
+      this.isLoginAttempt = true;
+      this.authService.login(this.loginForm.value).pipe(take(1))
+      .subscribe(() => {
+        if (this.authService.isLoggedIn)
+          this.router.navigate(['/admin']);
+        else
+          this.isWrongAttempt$.next(true);
+      })
+    } else {
+      this.isLoginAttempt = false;
+      this.authService.signin(this.loginForm.value).pipe(take(1))
+      .subscribe((res) => {
+        if (res) {
+          this.authService.registerUser(this.loginForm.value).pipe(take(1))
+          .subscribe((res) => {
+            if (res) this.login();
+            else this.isWrongAttempt$.next(true);
+          });
+        } else {
+          this.username.setErrors({ 'usernameInUse': true });
+        }
+      })
+    }
 
-    this.authService.login(this.loginForm.value).pipe(take(1)).subscribe(() => {
-      if (this.authService.isLoggedIn)
-        this.router.navigate(['/admin']);
-      else
-        this.isWrongAttempt$.next(true);
-    })
   }
 
 }

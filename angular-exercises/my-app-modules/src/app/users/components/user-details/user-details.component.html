@@ -1,1 +1,27 @@
-<p>user-details works!</p>
+<h2>Student Details</h2>
+
+<div *ngIf="student">
+  <h3>{{ student.name }} {{ student.surname }}</h3>
+
+  <div class="anag-info">
+    <div>
+      <span>Age:</span> {{ student.age }}
+    </div>
+    <div>
+      <span>Location:</span> {{ student.location?.city }}, {{ student.location?.country }}
+    </div>
+    <div>
+      <span>Hobbies:</span>
+      <ng-container *ngFor="let h of student.hobbies; let last = last">
+        {{ h }}<span *ngIf="!last">,&nbsp;</span>
+      </ng-container>
+    </div>
+    <div>
+      <span>Languages:</span>
+      <ng-container *ngFor="let l of student.languages; let last = last">
+        {{ l.language }} {{ l.level }}<span *ngIf="!last">,&nbsp;</span>
+      </ng-container>
+    </div>
+  </div>
+
+</div>

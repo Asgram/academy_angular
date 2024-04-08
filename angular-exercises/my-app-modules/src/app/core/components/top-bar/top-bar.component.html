@@ -3,16 +3,39 @@
 </a>
 
 <div>
-  <ng-content select="[domanda]"></ng-content>
 
-  <ng-content></ng-content>
+  <ng-container></ng-container>
 
-  <a routerLink="/store/cart" class="button fancy-button">
-    <span class="material-symbols-outlined">
+  <ng-container *ngIf="showCheckoutBtn">
+    <a routerLink="/store/cart" class="button fancy-button">
+      <span class="material-symbols-outlined">
+        shopping_cart
+      </span>
+      Checkout
+    </a>
+  </ng-container>
+
+  <button mat-icon-button color="primary" aria-label="store"
+    routerLink="/store"
+  >
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+
+  <button routerLink="/store">
+    <span class="material-symbols-outlined" style="color: white;">
       shopping_cart
     </span>
-    Checkout
-  </a>
+  </button>
+
+  <button routerLink="/users">
+    <span class="material-symbols-outlined" style="color: white;">
+      group
+    </span>
+  </button>
+
+  <span class="divider">
+    |
+  </span>
 
   <button routerLink="/admin">
     <span class="material-symbols-outlined" style="color: white;">

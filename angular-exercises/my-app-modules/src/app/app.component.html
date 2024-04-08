@@ -1,14 +1,19 @@
-<app-top-bar>
-    <span style="color: white; margin: 0 1rem;">
-        Ciao
-    </span>
-    <span style="color: white; margin: 0 1rem;" domanda>
-        Come
-    </span>
-</app-top-bar>
+<app-top-bar></app-top-bar>
 
-<div class="container">
-  <router-outlet></router-outlet>
+<!-- <ng-container *ngIf="topBarComponent">
+    <button type="button" (click)="topBarComponent?.toggleCheckoutBtn()">
+        {{ topBarComponent?.showCheckoutBtn ? 'Nascondi' : 'Mostra'}} Checkout
+    </button>
+</ng-container> -->
+
+<div id="main-container">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+
+    <div id="side-menu">
+                
+    </div>
 </div>
 
 <!-- 

@@ -6,5 +6,18 @@ import { Component } from '@angular/core';
   styleUrl: './top-bar.component.scss'
 })
 export class TopBarComponent {
+  showCheckoutBtn: boolean = true;
+
+  toggleCheckoutBtn(): void {
+    // if (this.showCheckoutBtn) {
+    //   this.showCheckoutBtn = false;
+    // } else {
+    //   this.showCheckoutBtn = true;
+    // }
+
+    // this.showCheckoutBtn = this.showCheckoutBtn ? false : true;
+
+    this.showCheckoutBtn = !this.showCheckoutBtn;
+  }
 
 }

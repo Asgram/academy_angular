@@ -27,7 +27,14 @@
     </span>
   </button>
 
-  {{ student.name }} {{ student.surname }}, {{ student.age }} ({{ student.location?.country}})
+  <div>
+    <a
+      [title]="student.name + ' ' + student.surname + ' details'"
+      [routerLink]="['/users/details', student.id]">
+      {{ student.name }} {{ student.surname }}, {{ student.age }} ({{ student.location?.country}})
+    </a>
+  </div>
+
   
 </div>
 

@@ -7,6 +7,7 @@ import { LessonsListComponent } from './components/lessons-list/lessons-list.com
 import { ProfessorsListComponent } from './components/professors-list/professors-list.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { userDetailResolver } from './resolvers/user-detail.resolver';
+import { userDetailNonNullableResolver } from './resolvers/user-detail-non-nullable.resolver';
 
 const routesUsers: Routes = [
   { path: 'list', component: UserListComponent, 
@@ -15,7 +16,10 @@ const routesUsers: Routes = [
       { path: 'professors', component: ProfessorsListComponent },
     ]
   },
-  // { path: ':id', component: UserDetailsComponent, resolve: { studentId: userDetailNonNullableResolve } },
+  { path: 'details/:id', 
+    component: UserDetailsComponent, 
+    resolve: { student: userDetailNonNullableResolver }
+  },
   { 
     path: 'form', 
     component: UserFormComponent, 

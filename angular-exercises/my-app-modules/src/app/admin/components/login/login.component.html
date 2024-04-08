@@ -1,21 +1,31 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-group">
+<form [formGroup]="loginForm" class="form-group">
   
   <div>
     <label for="username">Username</label>
     <input id="username" type="text" formControlName="username" />
+    <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert">
+      <div *ngIf="username.hasError('usernameInUse')">Username alreay in use</div>
+    </div>
   </div>
 
   <div>
     <label for="password">Password</label>
-    <input id="password" type="text" formControlName="password" />
+    <input id="password" type="password" formControlName="password" />
   </div>
 
   <div *ngIf="isWrongAttempt$ | async" class="alert">
-    <div>Login invalid</div>
+    <div>
+      {{ isLoginAttempt ? 'Log in' : 'Sign in'}} invalid
+    </div>
   </div>
 
-  <button class="button" type="submit" [disabled]="loginForm.invalid">
-    Login
-  </button>
+  <div class="btn-row">
+    <button class="button" type="button" [disabled]="loginForm.invalid" (click)="login()">
+      Log In
+    </button>
+    <button class="button" type="button" (click)="login(false)">
+      Sign In
+    </button>
+  </div>
 
 </form>

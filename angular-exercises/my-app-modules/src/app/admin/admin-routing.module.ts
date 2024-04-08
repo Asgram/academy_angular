@@ -7,6 +7,15 @@ const routesAdmin: Routes = [
     children: [   // CanActivateChild > Role 2, 3
       // Child 1 > Only Role 2              CanActivate
       // Child 2 > Only Role 2 + Role 3     CanActivate
+
+      /*
+        Vista: Lista di elementi
+        Click bottone singolo elemento
+        Nuova Vista: Lista di elementi + singolo elemento "modificabile"
+
+        Componente padre: Lista
+        Ciclare singoli elementi > Testo HTML || Campo di input
+      */
     ]
    }
 ];
