@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { TopBarComponent } from './core/components/top-bar/top-bar.component';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor() {
     this._title = "Lorem ipsum";
     // console.log(this.topBarComponent.showCheckoutBtn);
+    console.log("Ambiente di produzione", environment.production);
   }
 
   ngOnInit(): void {

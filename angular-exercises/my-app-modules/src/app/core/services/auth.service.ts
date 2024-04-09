@@ -70,7 +70,8 @@ export class AuthService {
   }
 
   registerUser(cred: Credentials): Observable<Credentials> {
-    return this.http.post<Credentials>(`${this.apiUrl}/registeredUsers`, cred)
+    const newUser = new Credentials(cred);
+    return this.http.post<Credentials>(`${this.apiUrl}/registeredUsers`, newUser)
       .pipe(map((user) => {
         return user
       }));

@@ -84,9 +84,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 9.  Cosa sono i decoratori in Angular?
 10.	Cos'è una direttiva in Angular e quali sono i tipi principali di direttive?
 11. Cosa sono i componenti in Angular?
-12. Cosa si intende per componente standalone?
-13. Com'è il ciclo di vita di un componente?
-14. Cosa sono le pipe in Angular?
+12. Cosa si intende per view incapsulation?
+13. Cosa si intende per componente standalone?
+14. Com'è il ciclo di vita di un componente?
+15. Cosa sono le pipe in Angular?
 15.	Cosa sono i moduli in Angular e qual è il loro scopo?
 16. Cosa sono i servizi in Angular?
 17.	Come si gestiscono le richieste HTTP in Angular utilizzando HttpClient?

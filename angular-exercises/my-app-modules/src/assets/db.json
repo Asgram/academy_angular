@@ -170,16 +170,19 @@
   ],
   "registeredUsers": [
     {
+      "id": "5157",
       "username": "admin",
       "password": "admin",
       "role": "Admin"
     },
     {
+      "id": "c03f",
       "username": "editor",
       "password": "editor",
       "role": "Editor"
     },
     {
+      "id": "69a0",
       "username": "reader",
       "password": "reader",
       "role": "Reader"
