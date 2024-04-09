@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersService } from './services/users.service';
@@ -11,6 +11,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { LessonsListComponent } from './components/lessons-list/lessons-list.component';
 import { ProfessorsListComponent } from './components/professors-list/professors-list.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { TestInterceptor } from '../core/interceptors/test.interceptor';
 
 
 @NgModule({
@@ -27,6 +28,12 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [UsersService]
+  providers: [
+    UsersService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TestInterceptor,
+      multi: true
+    }]
 })
 export class UsersModule { }

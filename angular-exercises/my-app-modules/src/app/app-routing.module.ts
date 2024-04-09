@@ -9,6 +9,16 @@ import { PageNotFoundComponent } from './core/components/page-not-found/page-not
 const resolveTitle: ResolveFn<string> = () => Promise.resolve('Store');
 
 const routes: Routes = [
+  /*
+  { path: '', component: Componente avente top-bar + router-outlet.
+    children:
+      Moduli dove mostrare top-bar
+  },
+  { path: 'xxx', component: Componente senza top-bar,
+    children:
+      Moduli senza top-bar
+  }
+   */
   { path: '', component: HomepageComponent },
   { path: 'login', loadComponent: () => import('./admin/components/login/login.component').then(mod => mod.LoginComponent)},
   { 
