@@ -1,9 +1,131 @@
-<h2>Menu</h2>
+<h2>Custom Directive</h2>
 
-<div style="margin-top: 1rem;">
-  <a class="button" routerLink="/store">Store</a>
+<h3>Attributiva - Evidenziatore</h3>
+
+<div appHighlight [defaultColor]="'yellow'" fontColor="red">
+  (Evidenziato Default) Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, minus?
 </div>
 
-<div style="margin-top: 1rem;">
-  <a class="button" routerLink="/users">User</a>
+<div [appHighlight]="'green'">
+  (Evidenziato con Input) Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, minus?
 </div>
+
+<h3>Strutturale - Select</h3>
+
+<ng-template appSelect let-data [selectFrom]="source">
+  <p>Directive Data: {{data | json}}</p>
+</ng-template>
+
+<h2>Custom Pipe</h2>
+
+<h3>Pipe Test</h3>
+
+<div>Pipe: {{ strForPipe | test }}</div>
+<div>No Pipe: {{ strForPipe }}</div>
+
+
+<hr>
+
+<h2>Direttive Attributive</h2>
+
+<h3>NgClass</h3>
+
+<!-- NgClass => Imposta una classe in maniera dinamica -->
+<div [ngClass]="showColorClass ? 'colorClass' : 'weightClass'">Lorem ipsum dolor sit amet.</div>
+
+<hr>
+
+<h3>NgStyle</h3>
+
+<!-- NgStyle => Imposta uno stile in maniera dinamica -->
+<div [ngStyle]="divStyles">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur, quod.</div>
+
+<hr>
+
+<h3>NgModel</h3>
+<!-- NgModel => Mostrare ed impostare valore di proprietà da input utente -->
+<div>
+  <label for="exampleNgModel">[(ngModel)]:</label>
+  <input type="text" [(ngModel)]="exampleItem.value" id="exampleNgModel">
+</div>
+  
+<div>
+  <label for="exampleNgModel">[ngModel] & (ngModelChange) :</label>
+  <input type="text" [ngModel]="exampleItem.value" (ngModelChange)="setExampleItemValue($event)" id="exampleNgModel">
+</div>
+
+<hr>
+
+<h2>Direttive Strutturali</h2>
+
+<h3>NgIf</h3>
+
+<p>Angular 16-</p>
+<div *ngIf="isShown">Lorem ipsum dolor sit amet.</div>
+
+<br>
+
+<p>Angular 17+</p>
+@if (isShown) {
+  <div>Lorem ipsum dolor sit amet.</div>
+} @else {
+  <div>Else - Lorem, ipsum dolor.</div>
+}
+
+<hr>
+
+<h3>NgFor</h3>
+
+<p>Angular 16-</p>
+<div *ngFor="let element of forArray; trackBy: trackById; let i = index; let last = last">
+  <p>{{ element.id}} - {{ element.value }}</p>
+</div>
+<div *ngIf="forArray.length == 0">
+  No items in the array
+</div>
+
+<br>
+
+<p>Angular 17+</p>
+@for (el of forArray; track el.id; let i = $index, last = $last, odd = $odd) {
+  <div>{{ el.value }}</div>
+} @empty {
+  <div>No items in the array</div>
+}
+
+<hr>
+
+<h3>NgSwitch</h3>
+
+<p>Angular 16-</p>
+<div *ngFor="let element of forArray; trackBy: trackById; let i = index; let last = last">
+  <div [ngSwitch]="element.role">
+    <p *ngSwitchCase="'Reader'">Questo è elemento Reader {{ element.value }} {{ element.role }}</p>
+    <p *ngSwitchCase="'Editor'">Questo è elemento Editor {{ element.value }} {{ element.role }}</p>
+    <p *ngSwitchCase="'Admin'">Questo è elemento Admin {{ element.value }} {{ element.role }}</p>
+    <p *ngSwitchCase="4">Questo è elemento 4 {{ element.value }} {{ element.role }}</p>
+    <p *ngSwitchDefault>Questo è l'elemento di default</p>
+  </div>  
+</div>
+
+<br>
+
+<p>Angular 17+</p>
+@for (el of forArray; track el.id; let i = $index, last = $last, odd = $odd) {
+  @switch (el.role) {
+    @case ('Reader') {
+      <p>Elemento Reader {{ el.value }}</p>
+    }
+    @case ('Editor') {
+      <p>Elemento Editor {{ el.value }}</p>
+    }
+    @case ('Admin') {
+      <p>Elemento Admin {{ el.value }}</p>
+    }
+    @default {
+      <p>Elemento Default</p>
+    }
+  }
+} @empty {
+  <div>No items in the array</div>
+}

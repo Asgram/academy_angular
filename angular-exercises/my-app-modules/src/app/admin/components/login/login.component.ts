@@ -27,42 +27,6 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder
   ) {}
 
-  // showColorClass: boolean = true
-
-  // isColorClassShown(show: boolean): boolean {
-  //   console.log("Metodo NgClass")
-  //   // Logica varia
-  //   return show;
-  // }
-
-  // get divStyles(): Record<string, string> {
-  //   return {'font-size': '30px', 'background-color': 'yellow'}
-  // }
-
-  // // HTML <div style="font-size: 30px; font-weight: 900; ...."
-
-  // exampleItem = {
-  //   value: 'Lorem ipsum'
-  // }
-
-  // setExampleItemValue(event: string) {
-  //   this.exampleItem.value = event.toUpperCase();
-  // }
-
-  // isShown: boolean = true;
-
-  // forArray: Array<{id: number, value: string, role?: 'Reader' | 'Editor' | 'Admin'}> = [
-  //   {id: 1, value: 'Lorem',  role: 'Admin'},
-  //   {id: 2, value: 'Ipsum', role: 'Editor'},
-  //   {id: 3, value: 'Sit', role: 'Reader'},
-  //   {id: 4, value: 'Dolet', role: 'Reader'},
-  //   {id: 5, value: 'Amo'}
-  // ];
-
-  // trackById(index: number, element: {id: number, value: string}): number {
-  //   return element.id;
-  // }
-
   ngOnInit(): void {
     this.username = new FormControl(null, [Validators.required]);
     this.password = new FormControl(null, [Validators.required]);
