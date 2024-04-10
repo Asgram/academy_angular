@@ -14,13 +14,13 @@ export class TestInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log("Request", request);  
+    console.log("Request", request);
     // const token = 'MY_TOKEN';
     // const tokenRequest = request.clone({
-    //   setHeaders: { 
-    //     Authorization: token
-    //   }
-    // });
+    //   headers: request.headers
+    //   .set('Accept', 'application/json')
+    //   .set('Content-Type', 'application/json')
+    // })
     // return next.handle(tokenRequest);
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {

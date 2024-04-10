@@ -23,8 +23,11 @@
 
   <app-product-alerts
     [productFiglio]="product"
-    (notifyEvent)="onNotify($event)">
+    (notifyEvent)="onNotify($event)"
+    [(propertyChanging)]="propertyPadre">
   </app-product-alerts>
+  <!-- [propertyChanging]="propertyPadre"
+  (onPropertyChanging)="onPropertyChangingChange($event)" -->
 
   <!-- v. 17 -->
   <!-- <p>

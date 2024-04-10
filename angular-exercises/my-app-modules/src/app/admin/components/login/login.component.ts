@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { BehaviorSubject, take } from 'rxjs';
 import { Router } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule, NgClass, NgFor, NgIf, NgStyle, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, NgClass, NgStyle, FormsModule, NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -26,6 +26,42 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder
   ) {}
+
+  // showColorClass: boolean = true
+
+  // isColorClassShown(show: boolean): boolean {
+  //   console.log("Metodo NgClass")
+  //   // Logica varia
+  //   return show;
+  // }
+
+  // get divStyles(): Record<string, string> {
+  //   return {'font-size': '30px', 'background-color': 'yellow'}
+  // }
+
+  // // HTML <div style="font-size: 30px; font-weight: 900; ...."
+
+  // exampleItem = {
+  //   value: 'Lorem ipsum'
+  // }
+
+  // setExampleItemValue(event: string) {
+  //   this.exampleItem.value = event.toUpperCase();
+  // }
+
+  // isShown: boolean = true;
+
+  // forArray: Array<{id: number, value: string, role?: 'Reader' | 'Editor' | 'Admin'}> = [
+  //   {id: 1, value: 'Lorem',  role: 'Admin'},
+  //   {id: 2, value: 'Ipsum', role: 'Editor'},
+  //   {id: 3, value: 'Sit', role: 'Reader'},
+  //   {id: 4, value: 'Dolet', role: 'Reader'},
+  //   {id: 5, value: 'Amo'}
+  // ];
+
+  // trackById(index: number, element: {id: number, value: string}): number {
+  //   return element.id;
+  // }
 
   ngOnInit(): void {
     this.username = new FormControl(null, [Validators.required]);
