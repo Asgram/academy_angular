@@ -35,7 +35,7 @@ const routes: Routes = [
     title: resolveTitle 
   },
   { 
-    path: 'academy', 
+    path: 'users', 
     loadChildren: () => import('./users/users.module').then(m => m.UsersModule), 
     title: resolveTitle
   },

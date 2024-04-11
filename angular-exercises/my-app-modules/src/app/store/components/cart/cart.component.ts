@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../constants/products';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
   items!: Array<Product>;
 
   checkoutForm!: FormGroup;
@@ -21,8 +21,8 @@ export class CartComponent {
   ) {
     this.items = this.cartService.items;
 
-    this.name = new FormControl();
-    this.address = new FormControl();
+    this.name = new FormControl(null, Validators.required);
+    this.address = new FormControl(null, Validators.required);
 
     this.checkoutForm = this.formBuilder.group({
       name: this.name,
@@ -30,11 +30,30 @@ export class CartComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.checkStatusForm();    
+  }
+
+  checkStatusForm(): void {
+    if (this.items.length == 0) {
+      this.name.disable();
+      this.address.disable();
+    }
+  }
+
+  get total(): string {
+    let total = '0';
+    if (this.items.length > 0) {
+      total = this.items?.map(item => item.price)?.reduce((sum, curr) => +sum + +curr).toString();
+    }
+    return total ? total : '0';
+  }
+
   onSubmit(): void {
     this.items = this.cartService.clearCart();
     console.warn('Your order has been submitted', this.checkoutForm.value);
-    console.log("Form", this.checkoutForm);
     this.checkoutForm.reset();
+    this.checkStatusForm();
   }
 
 }
