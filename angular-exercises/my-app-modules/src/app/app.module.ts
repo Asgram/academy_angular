@@ -17,6 +17,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SelectDirective } from './core/directives/select.directive';
 import { TestPipe } from './core/pipes/test.pipe';
 import { SyllabusComponent } from './core/components/syllabus/syllabus.component';
+import { CarouselCardComponent } from './core/components/carousel-card/carousel-card.component';
+import { CarouselComponent } from './core/components/carousel/carousel.component';
+import { CarouselListComponent } from './core/components/carousel-list/carousel-list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { SyllabusComponent } from './core/components/syllabus/syllabus.component
     HighlightDirective,
     SelectDirective,
     TestPipe,
-    SyllabusComponent
+    SyllabusComponent,
+    CarouselCardComponent,
+    CarouselComponent,
+    CarouselListComponent
   ],
   imports: [
     BrowserModule,
