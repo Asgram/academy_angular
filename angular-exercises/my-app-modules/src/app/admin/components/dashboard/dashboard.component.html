@@ -1,3 +1,19 @@
 <button class="button" type="button" (click)="logout()">
   Logout
 </button>
+
+<button class="button" type="button" [routerLink]="'./'">
+  Dashboard Admin
+</button>
+
+<button class="button" type="button" [routerLink]="'./edit'">
+  Sezione Edit
+</button>
+
+<button class="button" type="button" [routerLink]="'./delete'">
+  Sezione Delete (Only Admin)
+</button>
+
+<hr>
+
+<router-outlet></router-outlet>

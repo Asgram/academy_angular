@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { adminChildrenGuard } from './guards/admin-children.guard';
+import { DeleteUserComponent } from './components/delete-user/delete-user.component';
+import { adminOnlyGuard } from './guards/admin-only.guard';
 
 const routesAdmin: Routes = [
-  { path: '', component: DashboardComponent,
-    children: [   // CanActivateChild > Role 2, 3
-      // Child 1 > Only Role 2              CanActivate
-      // Child 2 > Only Role 2 + Role 3     CanActivate
+  { path: '', component: DashboardComponent, canActivateChild: [adminChildrenGuard],
+    children: [
+      { path: 'edit', component: EditUserComponent },
+      { path: 'delete', component: DeleteUserComponent, canActivate: [adminOnlyGuard]}
 
       /*
         Vista: Lista di elementi

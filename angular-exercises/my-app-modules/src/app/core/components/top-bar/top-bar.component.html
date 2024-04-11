@@ -5,6 +5,16 @@
       <mat-icon>school</mat-icon>
       <span>Academy App</span>
     </a>
+
+    @if (userLogged$ | async; as user) {
+      <span>
+        Ciao, {{ user.username }}
+      </span>
+    }
+
+    <span>
+      Ciao, {{ username }}
+    </span>
     
     <span class="spacer"></span>
 

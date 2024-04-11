@@ -186,6 +186,12 @@
       "username": "reader",
       "password": "reader",
       "role": "Reader"
+    },
+    {
+      "id": "964d",
+      "username": "user",
+      "password": "user",
+      "role": "Reader"
     }
   ]
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, of, tap } from 'rxjs';
 
 import { Credentials } from '../../admin/models/cred';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -11,7 +11,7 @@ export class AuthService {
   apiUrl: string = "http://localhost:3000";
 
   isLoggedIn: boolean = false;
-  userLogged: Credentials | null = null;
+  userLogged$: BehaviorSubject<Credentials | null> = new BehaviorSubject<Credentials | null>(null);
 
   redirectNoAuthUrl: string = '/login';
 
@@ -24,11 +24,11 @@ export class AuthService {
       map((res => {
         if (res) {
           this.isLoggedIn = true;
-          this.userLogged = res;
+          this.userLogged$.next(res);
           return true
         } else {
           this.isLoggedIn = false;
-          this.userLogged = null;
+          this.userLogged$.next(null);
           return false 
         }
       }))
@@ -40,7 +40,7 @@ export class AuthService {
 
   logout(): void {
     this.isLoggedIn = false;
-    this.userLogged = null;
+    this.userLogged$.next(null);
   }
 
   checkCredentials(cred: Credentials, isLogin: boolean = true): Observable<Credentials> {
