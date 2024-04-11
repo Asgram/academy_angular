@@ -7,14 +7,10 @@
     </a>
 
     @if (userLogged$ | async; as user) {
-      <span>
+      <span class="ms-3 fs-6">
         Ciao, {{ user.username }}
       </span>
     }
-
-    <span>
-      Ciao, {{ username }}
-    </span>
     
     <span class="spacer"></span>
 

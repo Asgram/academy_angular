@@ -6,48 +6,55 @@
   </a>
 </h2>
 
-<mat-list role="list">
-@for (item of items; track $index) {
-  <mat-list-item role="listitem">
-    <div class="d-flex justify-content-between">
-      <span>{{ item.name }}</span>
-      <span>{{ item.price | currency }}</span>
-    </div>
-  </mat-list-item>
-} @empty {
-  <mat-list-item role="listitem">
-    No products added to the cart
-  </mat-list-item>
-}
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <div class="d-flex justify-content-between">
-      <span><strong>Total</strong></span>
-      <span>{{ total | currency }}</span>
-    </div>
-  </mat-list-item>
-</mat-list>
+<div class="row">
 
-<h3 class="my-3">Checkout Form</h3>
-
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-
-  <div class="row">
-
-    <mat-form-field class="col-sm-6">
-      <mat-label>Name</mat-label>
-      <input matInput placeholder="Mario Rossi" formControlName="name">
-    </mat-form-field>
-    
-    <mat-form-field class="col-sm-6">
-      <mat-label>Address</mat-label>
-      <input matInput placeholder="Via Roma, 1" formControlName="address">
-    </mat-form-field>
-
+  <div class="col-sm-6">
+    <mat-list role="list">
+    @for (item of items; track $index) {
+      <mat-list-item role="listitem">
+        <div class="d-flex justify-content-between">
+          <span>{{ item.name }}</span>
+          <span>{{ item.price | currency }}</span>
+        </div>
+      </mat-list-item>
+    } @empty {
+      <mat-list-item role="listitem">
+        No products added to the cart
+      </mat-list-item>
+    }
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <div class="d-flex justify-content-between">
+          <span><strong>Total</strong></span>
+          <span>{{ total | currency }}</span>
+        </div>
+      </mat-list-item>
+    </mat-list>
   </div>
-
-  <button mat-flat-button type="submit" color="primary" [disabled]="checkoutForm.invalid || items.length == 0">
-    Purchase
-  </button>
-
-</form>
+  
+  <div class="col-sm-6">
+    <h3 class="my-3">Checkout Form</h3>
+    
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    
+      <div class="row">
+    
+        <mat-form-field class="col-lg-6">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Mario Rossi" formControlName="name">
+        </mat-form-field>
+    
+        <mat-form-field class="col-lg-6">
+          <mat-label>Address</mat-label>
+          <input matInput placeholder="Via Roma, 1" formControlName="address">
+        </mat-form-field>
+    
+      </div>
+    
+      <button mat-flat-button type="submit" color="primary" [disabled]="checkoutForm.invalid || items.length == 0">
+        Purchase
+      </button>
+    
+    </form>
+  </div>
+</div>

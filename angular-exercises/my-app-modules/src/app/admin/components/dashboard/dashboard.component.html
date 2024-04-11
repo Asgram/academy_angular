@@ -1,19 +1,24 @@
-<button class="button" type="button" (click)="logout()">
-  Logout
-</button>
+<div class="container">
 
-<button class="button" type="button" [routerLink]="'./'">
-  Dashboard Admin
-</button>
+  <div class="d-flex justify-content-around">
+    <button mat-stroked-button (click)="logout()">
+      Log Out
+    </button>
+    <button mat-stroked-button [routerLink]="'./'">
+      Dashboard
+    </button>
+    <button mat-stroked-button [routerLink]="'./edit'">
+      Sezione Edit
+    </button>
+    <button mat-stroked-button [routerLink]="'./delete'">
+      Sezione Delete
+    </button>
+  </div>
 
-<button class="button" type="button" [routerLink]="'./edit'">
-  Sezione Edit
-</button>
+</div>
 
-<button class="button" type="button" [routerLink]="'./delete'">
-  Sezione Delete (Only Admin)
-</button>
-
-<hr>
+<div class="my-3">
+  <mat-divider></mat-divider>
+</div>
 
 <router-outlet></router-outlet>

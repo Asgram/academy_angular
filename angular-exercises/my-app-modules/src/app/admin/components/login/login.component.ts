@@ -4,11 +4,13 @@ import { BehaviorSubject, take } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule, NgClass, NgFor, NgIf, NgStyle, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+import { MaterialModule } from '../../../core/material/material.module';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgClass, NgStyle, FormsModule, NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, MaterialModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -24,7 +26,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -40,23 +43,21 @@ export class LoginComponent implements OnInit {
   login(isLogin: boolean = true): void {
     
     if (isLogin) {
-      this.isLoginAttempt = true;
       this.authService.login(this.loginForm.value).pipe(take(1))
       .subscribe(() => {
         if (this.authService.isLoggedIn)
           this.router.navigate(['/admin']);
         else
-          this.isWrongAttempt$.next(true);
+          this._snackBar.open('Failed Log In', 'Close');
       })
     } else {
-      this.isLoginAttempt = false;
       this.authService.signin(this.loginForm.value).pipe(take(1))
       .subscribe((res) => {
         if (res) {
           this.authService.registerUser(this.loginForm.value).pipe(take(1))
           .subscribe((res) => {
             if (res) this.login();
-            else this.isWrongAttempt$.next(true);
+            else this._snackBar.open('Sign in invalid', 'Close');
           });
         } else {
           this.username.setErrors({ 'usernameInUse': true });

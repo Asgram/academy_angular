@@ -4,6 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { UsersRoutingModule } from './users-routing.module';
+import { MaterialModule } from '../core/material/material.module';
+
 import { UsersService } from './services/users.service';
 
 import { UserListComponent } from './components/user-list/user-list.component';
@@ -26,7 +28,8 @@ import { TestInterceptor } from '../core/interceptors/test.interceptor';
     CommonModule,
     UsersRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   providers: [
     UsersService,

@@ -9,12 +9,4 @@ import { Product } from '../../constants/products';
 export class ProductAlertsComponent {
   @Input() productFiglio!: Product;
   @Output() notifyEvent: EventEmitter<string> = new EventEmitter<string>();
-
-  @Input() propertyChanging!: string;
-  @Output() propertyChangingChange: EventEmitter<string> = new EventEmitter<string>();
-
-  methodChange() {
-    this.propertyChangingChange.emit('Sit dolet');
-  }
-
 }

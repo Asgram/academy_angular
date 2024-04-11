@@ -1,155 +1,36 @@
 <div class="container-fluid">
 
-  <div class="my-5">
-    <app-carousel></app-carousel>
+  <div class="carousel row align-items-center my-2">
+
+    <div class="col-2">
+      <button mat-fab color="primary"
+        aria-label="Previous card"
+        (click)="onPrev()"
+      >
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+    
+    <div class="col-8 justify-self-center">
+      
+      <ng-container *ngComponentOutlet="
+        currentSubjectCard.component;
+        inputs: currentSubjectCard.input">
+      </ng-container>
+  
+    </div>
+  
+    <div class="col-2 text-end">
+      <button mat-fab color="primary"
+        aria-label="Next card"
+        (click)="onNext()"
+      >
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+  
   </div>
 
-  <div class="row gy-2">
-
-    <div class="col-sm-6 col-lg-4">
-      <mat-card class="bg-dark text-white h-100">
-        <mat-card-header>
-          <mat-card-title>Angular</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <ul>
-            <li>Definizione di Angular</li>
-            <li>Framework vs Library</li>
-            <li>Package Management</li>
-            <li>Angular CLI</li>
-            <li>Applicazione SPA</li>
-            <li>Compilazione AOT e JIT</li>
-            <li>Configurazioni (angular.json) e environments</li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  
-    <div class="col-sm-6 col-lg-4">
-      <mat-card class="bg-dark text-white h-100">
-        <mat-card-header>
-          <mat-card-title>Componenti</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <ul>
-            <li>Definizione di Componente</li>
-            <li>Decoratore &#64;Component</li>
-            <li>Lifecycle</li>
-            <li>View Encapsulation</li>
-            <li>Passaggio di dati tra componenti</li>
-            <li>ViewChild & ViewChildren</li>
-            <li>Content Projection</li>
-            <li>Componenti Dinamici</li>
-            <li>Standalone vs NgModule</li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  
-    <div class="col-sm-6 col-lg-4">
-      <mat-card class="bg-dark text-white h-100">
-        <mat-card-header>
-          <mat-card-title>Template</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <ul>
-            <li>Text Interpolation</li>
-            <li>Property, Attribute, Class & Style Binding</li>
-            <li>Event Binding</li>
-            <li>Two-way Binding (banana-in-a-box)</li>
-            <li>Pipe</li>
-            <li>Template Reference Variable</li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-    <div class="col-sm-6 col-lg-4">
-      <mat-card class="bg-dark text-white h-100">
-        <mat-card-header>
-          <mat-card-title>Direttive</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <ul>
-            <li>Direttive Built-In</li>
-            <li>Attributive</li>
-            <li>Strutturali</li>
-            <li>Custom</li>
-            <li>Control Flow</li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  
-    <div class="col-sm-6 col-lg-4">
-      <mat-card class="bg-dark text-white h-100">
-        <mat-card-header>
-          <mat-card-title>Servizi</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <ul>
-            <li>Casi d'Uso: Http Client, Facade, Data Management, ...</li>
-            <li>Decoratore &#64;Injectable</li>
-            <li>Design Pattern Dependency Injection</li>
-            <li>Design Pattern Singleton</li>
-            <li>Root, Module, Component Scope</li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  
-    <div class="col-sm-6 col-lg-4">
-      <mat-card class="bg-dark text-white h-100">
-        <mat-card-header>
-          <mat-card-title>Routing</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <ul>
-            <li>Gestione di cambio rotta (template, component, ...)</li>
-            <li>Passaggio di dati, parametri</li>
-            <li>Guardie, Resolver</li>
-            <li>Lazy Loading</li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  
-    <div class="col-sm-6 col-lg-4">
-      <mat-card class="bg-dark text-white h-100">
-        <mat-card-header>
-          <mat-card-title>Http Client</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <ul>
-            <li>Protocollo Http</li>
-            <li>Metodi CRUD</li>
-            <li>Gestione di Richieste e Risposte</li>
-            <li>Interceptors</li>
-            <li>Pattern Observable</li>
-            <li>RxJS: Observable, Observer, Subject</li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  
-    <div class="col-sm-6 col-lg-4">
-      <mat-card class="bg-dark text-white h-100">
-        <mat-card-header>
-          <mat-card-title>Form</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <ul>
-            <li>Template Driven vs Reactive Forms</li>
-            <li>Form Control, Form Group, Form Array</li>
-            <li>Nested Forms</li>
-            <li>Dynamic Forms</li>
-            <li>Validators</li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-  </div>
 </div>
 
 <hr>

@@ -49,7 +49,7 @@ export class AuthService {
     };
 
     if (isLogin)
-      options.params.set('password', cred.password)
+      options.params = options.params.set('password', cred.password)
 
     return this.http.get<Array<Credentials>>(`${this.apiUrl}/registeredUsers`, options).pipe(
       // Ritorno solamente il primo (ed unico) elemento dell'array, perché l'attuale API restituisce sempre una lista

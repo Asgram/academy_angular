@@ -1,16 +1,5 @@
-.colorClass {
-  color: red;
-}
-
-.weightClass {
-  font-weight: bold;
-}
-
-.form-group {
-  margin-top: 1rem;
-
-  .btn-row {
-    display: flex;
-    justify-content: space-around;
-  }
+mat-error {
+  margin-top: -22px;
+  margin-left: 15px;
+  font-size: small;
 }

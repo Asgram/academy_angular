@@ -1,27 +1,44 @@
-<h2>Student Details</h2>
+<div class="container">
+  <h2>Student Details</h2>
 
-<div *ngIf="student">
-  <h3>{{ student.name }} {{ student.surname }}</h3>
+  <mat-card class="bg-card">
 
-  <div class="anag-info">
-    <div>
-      <span>Age:</span> {{ student.age }}
-    </div>
-    <div>
-      <span>Location:</span> {{ student.location?.city }}, {{ student.location?.country }}
-    </div>
-    <div>
-      <span>Hobbies:</span>
-      <ng-container *ngFor="let h of student.hobbies; let last = last">
-        {{ h }}<span *ngIf="!last">,&nbsp;</span>
-      </ng-container>
-    </div>
-    <div>
-      <span>Languages:</span>
-      <ng-container *ngFor="let l of student.languages; let last = last">
-        {{ l.language }} {{ l.level }}<span *ngIf="!last">,&nbsp;</span>
-      </ng-container>
-    </div>
-  </div>
+    <mat-card-header>
+      <mat-card-title class="mb-2">
+        {{ student.name }} {{ student.surname }}
+      </mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content>
+      <div class="d-flex">
+
+        <div class="me-3 fw-bold">
+          <div>Age:</div>
+          <div>Location:</div>
+          <div>Hobbies:</div>
+          <div>Languages:</div>
+        </div>
+    
+        <div>
+          <div>{{ student.age }}</div>
+          <div>
+            {{ student.location?.city }}, {{ student.location?.country }}
+          </div>
+          <div>
+          @for (h of student.hobbies; track $index; let last = $last) {
+              {{ h }}@if (!last) {,&nbsp;}
+            }
+          </div>
+          <div>
+            @for (l of student.languages; track $index; let last = $last) {
+                {{ l.language }} {{ l.level }}@if (!last) {,&nbsp;}
+              }
+            </div>
+        </div>
+    
+      </div>
+    </mat-card-content>  
+  
+  </mat-card>
 
 </div>

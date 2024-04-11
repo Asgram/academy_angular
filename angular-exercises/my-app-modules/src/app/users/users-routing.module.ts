@@ -25,10 +25,6 @@ const routesUsers: Routes = [
     component: UserFormComponent, 
     resolve: { editStudent: userDetailResolver }
   },
-  // Percorso invoca resolve
-  // ResolveData { chiave: ResolveFunction<tipoRitorno> }
-  // Se ritorno della ResolveFunction !== tipoRitorno => non eseguo navigazione
-  // Se ritorno della ResolveFunction === tipoRitorno => eseguo navigazione
   { path: '', redirectTo: 'list', pathMatch: 'full' }
 ];
 

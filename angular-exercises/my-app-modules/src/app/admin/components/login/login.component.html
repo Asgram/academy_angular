@@ -1,31 +1,45 @@
-<form [formGroup]="loginForm" class="form-group">
+<div class="container">
+  <form [formGroup]="loginForm" class="row">
   
-  <div>
-    <label for="username">Username</label>
-    <input id="username" type="text" formControlName="username" />
-    <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert">
-      <div *ngIf="username.hasError('usernameInUse')">Username alreay in use</div>
+    <div class="col-sm-6 mb-2">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+      </mat-form-field>
+      @if (username.invalid && (username.dirty || username.touched)) {
+        @if (username.hasError('usernameInUse')) {
+          <mat-error>Username already taken</mat-error>
+        }
+      }
     </div>
-  </div>
-
-  <div>
-    <label for="password">Password</label>
-    <input id="password" type="password" formControlName="password" />
-  </div>
-
-  <div *ngIf="isWrongAttempt$ | async" class="alert">
-    <div>
-      {{ isLoginAttempt ? 'Log in' : 'Sign in'}} invalid
+  
+    <div class="col-sm-6 mb-2">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
     </div>
-  </div>
+  
+    <div *ngIf="isWrongAttempt$ | async" class="alert">
+      <div>
+        {{ isLoginAttempt ? 'Log in' : 'Sign in'}} invalid
+      </div>
+    </div>
+  
+    <div class="col-12 d-flex justify-content-around">
 
-  <div class="btn-row">
-    <button class="button" type="button" [disabled]="loginForm.invalid" (click)="login()">
-      Log In
-    </button>
-    <button class="button" type="button" (click)="login(false)">
-      Sign In
-    </button>
-  </div>
+      <button mat-flat-button type="button" color="primary"
+        [disabled]="loginForm.invalid"
+        (click)="login()"
+      >
+        Log In
+      </button>
 
-</form>
+      <button mat-flat-button type="button" color="primary" (click)="login(false)">
+        Sign In
+      </button>
+
+    </div>
+  
+  </form>
+</div>

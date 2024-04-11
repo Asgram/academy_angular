@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { TopBarComponent } from './core/components/top-bar/top-bar.component';
 import { environment } from '../environments/environment';
 
@@ -7,7 +7,7 @@ import { environment } from '../environments/environment';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   @ViewChild(TopBarComponent) topBarComponent!: TopBarComponent;
   @ViewChildren(TopBarComponent) topBarComponentChildrens!: QueryList<any>
 
@@ -15,18 +15,12 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor() {
     this._title = "Lorem ipsum";
-    // console.log(this.topBarComponent.showCheckoutBtn);
     console.log("Ambiente di produzione", environment.production);
   }
 
   ngOnInit(): void {
-    // console.log(this.topBarComponent.showCheckoutBtn);
   }
   
-  ngAfterViewInit(): void {
-    console.log(this.topBarComponent.showCheckoutBtn);
-  }
-
   get title(): string {
     return this._title;
   }

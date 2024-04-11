@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { subjectCardsArray } from '../../models/syllabus';
 
 @Component({
   selector: 'app-syllabus',
@@ -6,6 +7,26 @@ import { Component } from '@angular/core';
   styleUrl: './syllabus.component.scss'
 })
 export class SyllabusComponent {
+  subjectCardsArray: Array<any> = subjectCardsArray;
+  currentIndex: number = 0;
+
+  get currentSubjectCard() {
+    let currentCard = this.subjectCardsArray[this.currentIndex];
+    currentCard.input.index = this.currentIndex + 1;
+    return currentCard;
+  }
+
+  onNext(): void {
+    this.currentIndex++;
+    if (this.currentIndex == this.subjectCardsArray.length)
+      this.currentIndex = 0;
+  }
+  onPrev(): void {
+    this.currentIndex--;
+    if (this.currentIndex < 0)
+      this.currentIndex = this.subjectCardsArray.length - 1;
+  }
+
   showColorClass: boolean = true;
 
   get getterShowColorClass(): boolean {
