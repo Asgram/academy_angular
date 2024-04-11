@@ -16,6 +16,7 @@ import { HomepageComponent } from './core/components/homepage/homepage.component
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SelectDirective } from './core/directives/select.directive';
 import { TestPipe } from './core/pipes/test.pipe';
+import { SyllabusComponent } from './core/components/syllabus/syllabus.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TestPipe } from './core/pipes/test.pipe';
     HomepageComponent,
     HighlightDirective,
     SelectDirective,
-    TestPipe
+    TestPipe,
+    SyllabusComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { authGuard } from './core/guards/auth.guard';
 
 import { HomepageComponent } from './core/components/homepage/homepage.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
+import { SyllabusComponent } from './core/components/syllabus/syllabus.component';
 
 const resolveTitle: ResolveFn<string> = (route) => {
   let pageTitle = 'Academy App';
@@ -20,7 +21,11 @@ const resolveTitle: ResolveFn<string> = (route) => {
 };
 
 const routes: Routes = [
-  { path: '', component: HomepageComponent, title: resolveTitle },
+  { path: '', component: HomepageComponent, title: resolveTitle,
+    children: [
+      { path: '', component: SyllabusComponent}
+    ]
+   },
   { path: 'login', loadComponent: () => import('./admin/components/login/login.component').then(mod => mod.LoginComponent),
     title: resolveTitle
   },

@@ -2,31 +2,25 @@
   <mat-toolbar color="primary">
     
     <a mat-button [routerLink]="['/']">
+      <mat-icon>school</mat-icon>
       <span>Academy App</span>
     </a>
     
     <span class="spacer"></span>
 
-    <!-- @if (isPhoneScreen$) { -->
-      <!-- <button mat-icon-button aria-label="burger menu">
-        <mat-icon>menu</mat-icon>
-      </button> -->
-    <!-- } @else { -->
       <button mat-icon-button routerLink="/store" aria-label="navigate to store section">
         <mat-icon>shopping_cart</mat-icon>
       </button>
       
       <button mat-icon-button routerLink="/academy" aria-label="navigate to academy section">
-        <mat-icon>school</mat-icon>
+        <mat-icon>group</mat-icon>
       </button>
   
       <div class="divider"></div>
   
       <button mat-icon-button routerLink="/admin" aria-label="navigate to admin section">
         <mat-icon>admin_panel_settings</mat-icon>
-      </button>
-    <!-- } -->
-    
+      </button>    
 
   </mat-toolbar>
 </p>
